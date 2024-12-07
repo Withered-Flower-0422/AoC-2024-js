@@ -5,23 +5,12 @@ const choice = 1
 const file = ['example.txt', 'puzzle.txt'][choice]
 const data = fs.readFileSync(path.join(__dirname, file), 'utf8')
 
-const equations = data.split('\r\n')
-
-const canHoldTrue = e => {
-    const [[target], nums] = e.split(': ').map(s => s.split(' ').map(Number))
-    const _canHoldTrue = (n, t) => {
-        if (n.length === 1) return n[0] === t
-        const n0 = n.slice(2)
-        const n1 = [n[0] + n[1], ...n0]
-        const n2 = [n[0] * n[1], ...n0]
-        return _canHoldTrue(n1, t) || _canHoldTrue(n2, t)
+console.log(data.replace(/:/g, '').split('\r\n').map(e => e.split(' ').map(Number)).map(
+    function $(e) {
+        const t = e[0], n = e.slice(1)
+        if (n.length === 1) return n[0] === t ? t : 0
+        const _ = n.slice(2)
+        return $([t, n[0] + n[1], ..._])
+            || $([t, n[0] * n[1], ..._])
     }
-    return _canHoldTrue(nums, target)
-}
-
-let cnt = 0
-equations.forEach(e => {
-    if (canHoldTrue(e)) cnt += +e.split(': ')[0]
-})
-
-console.log(cnt)
+).reduce((acc, e) => acc + e, 0))
