@@ -1,9 +1,4 @@
-const fs = require('fs')
-const path = require('path')
-
-const choice = 1
-const file = ['example.txt', 'puzzle.txt'][choice]
-const data = fs.readFileSync(path.join(__dirname, file), 'utf8')
+const data = require('fs').readFileSync(require('path').join(__dirname, 1 ? 'puzzle.txt' : 'example.txt'), 'utf8')
 
 const map = data.split('\r\n').map(line => line.split('').map(Number))
 const r = map.length, c = map[0].length

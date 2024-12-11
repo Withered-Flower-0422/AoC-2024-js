@@ -1,12 +1,6 @@
-const fs = require('fs')
-const path = require('path')
+const data = require('fs').readFileSync(require('path').join(__dirname, 1 ? 'puzzle.txt' : 'example.txt'), 'utf8')
 
-const choice = 1
-const file = ['example.txt', 'puzzle.txt'][choice]
-const data = fs.readFileSync(path.join(__dirname, file), 'utf8')
-
-const list1 = []
-const list2 = []
+const list1 = [], list2 = []
 
 for (const line of data.split('\r\n')) {
     const nums = line.split('   ')

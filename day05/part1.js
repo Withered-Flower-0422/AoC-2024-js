@@ -1,15 +1,5 @@
-const fs = require('fs')
-const path = require('path')
+const data = require('fs').readFileSync(require('path').join(__dirname, 1 ? 'puzzle.txt' : 'example.txt'), 'utf8')
 
-const choice = 1
-const file = ['example.txt', 'puzzle.txt'][choice]
-const data = fs.readFileSync(path.join(__dirname, file), 'utf8')
-
-/**
- * 
- * @param  {...number} arrays 
- * @returns {number[][]}
- */
 const zip = (...arrays) => {
     const result = []
     for (let i = 0; i < arrays[0].length; i++) {
@@ -18,11 +8,6 @@ const zip = (...arrays) => {
     return result
 }
 
-/**
- * 
- * @param {number[]} value 
- * @returns {number[]}
- */
 Array.prototype.findAllValueIndexes = function (value) {
     const indexes = []
     for (let i = 0; i < this.length; i++) {
@@ -40,10 +25,6 @@ const [rules, updates] =
 
 const [former, latter] = zip(...rules)
 
-/**
- * 
- * @param {number[]} update
- */
 const isRightOrder = (update, f = former, l = latter) => {
     for (let i = 1; i < update.length; i++) {
         if (f.findAllValueIndexes(update[i]).map(index => l[index]).some(x => update.slice(0, i).includes(x)))
