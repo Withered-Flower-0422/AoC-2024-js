@@ -12,6 +12,7 @@ const calc = machine => {
     if (!(isInt(a) && isInt(b))) return 0
 
     a = Math.round(a); b = Math.round(b)
+    if (a > 100 || b > 100) return 0
     return 3 * a + b
 }
 
