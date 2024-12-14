@@ -16,8 +16,8 @@ const robots = data.split('\r\n').map(line => line.match(/-?\d+/g).map(Number))
 const getQuadrant = (robot, sceond = 100) => {
     let [x, y, dx, dy] = robot
     x += dx * sceond; y += dy * sceond
-    while (x < 0) x += tx; while (y < 0) y += ty
     x %= tx; y %= ty
+    if (x < 0) x += tx; if (y < 0) y += ty
 
     let q = null
     if (x < hx && y < hy) {
