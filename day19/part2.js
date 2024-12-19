@@ -7,7 +7,6 @@ const ways2Produce = p => {
     const _ways2Produce = p => {
         if (p in cache) return cache[p]
         let cnt = 0
-        const l = []
         for (const m of materials) {
             if (p === m) cnt++
             if (p.endsWith(m)) cnt += _ways2Produce(p.slice(0, -m.length))
