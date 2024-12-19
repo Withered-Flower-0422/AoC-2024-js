@@ -1,5 +1,6 @@
-*.txt
-*.py
-*.bat
-*.json
-*.exe
+*
+
+!/**/
+!*.js
+!*.md
+!*.gitignore
