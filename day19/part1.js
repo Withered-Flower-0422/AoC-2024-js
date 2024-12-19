@@ -6,10 +6,7 @@ const canBeProduced = p => {
     const l = []
     for (const m of materials) {
         if (p === m) return true
-        if (p.endsWith(m)) l.push(p.slice(0, -m.length))
-    }
-    for (const r of l) {
-        if (canBeProduced(r)) return true
+        if (p.endsWith(m) && canBeProduced(p.slice(0, -m.length))) return true
     }
     return false
 }
